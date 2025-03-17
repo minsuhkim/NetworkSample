@@ -45,28 +45,25 @@ namespace Server
 
                 string receiveMessage = Encoding.UTF8.GetString(buffer);
                 char splitChar = '+';
-                for(int i=0; i<receiveMessage.Length; i++)
+                if (receiveMessage.Contains("+"))
                 {
-                    if (receiveMessage[i] == '+')
-                    {
-                        splitChar = '+';
-                        break;
-                    }
-                    else if (receiveMessage[i] == '-')
-                    {
-                        splitChar = '-';
-                        break;
-                    }
-                    else if (receiveMessage[i] == '/')
-                    {
-                        splitChar = '/';
-                        break;
-                    }
-                    else if (receiveMessage[i] == '*')
-                    {
-                        splitChar = '*';
-                        break;
-                    }
+                    splitChar = '+';
+                }
+                else if (receiveMessage.Contains("-"))
+                {
+                    splitChar = '-';
+                }
+                else if (receiveMessage.Contains("*"))
+                {
+                    splitChar = '*';
+                }
+                else if (receiveMessage.Contains("/"))
+                {
+                    splitChar = '/';
+                }
+                else if (receiveMessage.Contains("%"))
+                {
+                    splitChar = '%';
                 }
 
                 string[] numbers = new string[2];
